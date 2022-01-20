@@ -4,9 +4,8 @@ public class Game {
         Board board = new Board();
         Player blackPlayer = new Player("black");
         Player whitePlayer = new Player("white");
-        int turnNumber = 0;
 
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 20; i++) {
             playingPhase((i % 2 != 0 ? whitePlayer : blackPlayer), board);
         }
 
