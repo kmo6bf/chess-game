@@ -9,17 +9,23 @@ public class Board {
         boardScanner = new BoardScanner(this.board);
     }
 
-    public boolean changePieceLocationOnBoard(HashMap<String, String> location) {
-        HashMap<String, Integer> sourceLocation = BoardSetting.convertLocationToIndex(location.get("source"));
-        HashMap<String, Integer> destinationLocation = BoardSetting.convertLocationToIndex(location.get("destination"));
-        Piece piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
+    public boolean changePieceLocationOnBoard(String location) {
+        Piece piece;
+        // 출발지 위치
+        HashMap<String, Integer> sourceLocation = BoardSetting.convertLocationToIndex(location.split(" ")[0]);
+        // 도착지 위치
+        HashMap<String, Integer> destinationLocation = BoardSetting.convertLocationToIndex(location.split(" ")[1]);
 
+        piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
+
+        // 기물의 이동이 유효한지 체크
         if (!piece.move(boardScanner, destinationLocation.get("column"), destinationLocation.get("row"))) {
             return false;
         }
 
         board[destinationLocation.get("column")][destinationLocation.get("row")] = piece;
         board[sourceLocation.get("column")][sourceLocation.get("row")] = null;
+
         return true;
     }
 
