@@ -15,13 +15,13 @@ public class Player {
     public HashMap<String, String> inputStrategyOfPlayer() {
         Scanner sc = new Scanner(System.in);
         HashMap<String, String> locationOfMovement = new HashMap<>(2);
-        String source;
-        String destination;
+        String locationInput, source, destination;
 
-        System.out.print("움직일 기물의 위치를 입력하세요 ex) a2 : ");
-        source = sc.nextLine();
-        System.out.print("이동할 위치를 입력하세요 ex) a3 : ");
-        destination = sc.nextLine();
+        System.out.print("움직일 기물의 위치/도착지를 입력하세요 ex) a2 a3 : ");
+        locationInput = sc.nextLine();
+
+        source = locationInput.split(" ")[0];
+        destination = locationInput.split(" ")[1];
 
         locationOfMovement.put("source", source);
         locationOfMovement.put("destination", destination);
