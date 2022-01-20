@@ -1,5 +1,5 @@
 public abstract class Piece {
-    private final String color;
+    protected final String color;
     protected int currentColumn;
     protected int currentRow;
 
@@ -9,7 +9,7 @@ public abstract class Piece {
         this.currentRow = currentRow;
     }
 
-    public abstract boolean move(int column, int row);
+    public abstract boolean move(BoardScanner boardScanner, int column, int row);
 
     @Override
     public String toString() {
@@ -24,5 +24,8 @@ public abstract class Piece {
         return color;
     }
 
-
+    protected void applyChangeLocation(int column, int row) {
+        this.currentColumn = column;
+        this.currentRow = row;
+    }
 }

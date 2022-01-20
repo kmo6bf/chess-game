@@ -1,20 +1,20 @@
 import java.util.HashMap;
 
 public class Board {
+    BoardScanner boardScanner;
     private Piece[][] board;
 
     public Board() {
         this.board = BoardSetting.initialBoard();
+        boardScanner = new BoardScanner(this.board);
     }
 
     public boolean changePieceLocationOnBoard(HashMap<String, String> location) {
         HashMap<String, Integer> sourceLocation = BoardSetting.convertLocationToIndex(location.get("source"));
         HashMap<String, Integer> destinationLocation = BoardSetting.convertLocationToIndex(location.get("destination"));
-        System.out.println(sourceLocation);
         Piece piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
-        System.out.println(piece.getKind());
 
-        if (!piece.move(destinationLocation.get("column"), destinationLocation.get("row"))) {
+        if (!piece.move(boardScanner, destinationLocation.get("column"), destinationLocation.get("row"))) {
             return false;
         }
 

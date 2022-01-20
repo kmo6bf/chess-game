@@ -11,7 +11,6 @@ public class Game {
         }
 
         System.out.println("Game Over!");
-        System.out.println(BoardSetting.convertIndexToLocation(0, 0));
     }
 
     public void playingPhase(Player player, Board board) {

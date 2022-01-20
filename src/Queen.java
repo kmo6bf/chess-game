@@ -4,7 +4,7 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean move(int column, int row) {
+    public boolean move(BoardScanner boardScanner, int column, int row) {
         return false;
     }
 }
