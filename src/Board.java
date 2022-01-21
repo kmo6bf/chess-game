@@ -18,6 +18,15 @@ public class Board {
 
         piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
 
+        // 목적지에 아군 기물이 존재하는지 체크
+        if (boardScanner.checkExistenceOfAlliesOnDestination(piece.getColor(), destinationLocation.get("column"), destinationLocation.get("row")))
+            return false;
+
+        // 출발지에 기물이 존재하는지 체크
+        if (!boardScanner.checkExistenceOfPiece(sourceLocation.get("column"), sourceLocation.get("row")))
+            return false;
+
+
         // 기물의 이동이 유효한지 체크
         if (!piece.move(boardScanner, destinationLocation.get("column"), destinationLocation.get("row"))) {
             return false;
@@ -35,7 +44,7 @@ public class Board {
         for (int i = 7; i >= 0; i--) {
             sb.append(i + 1 + " |");
             for (int j = 0; j < 8; j++) {
-                sb.append(" " + presentationPiece(board[i][j]) + " |");
+                sb.append(" " + presentationPieceAsIcon(board[i][j]) + " |");
             }
             sb.append("\n  ---------------------------------\n");
         }
@@ -43,24 +52,18 @@ public class Board {
         System.out.println(sb);
     }
 
-    private String presentationPiece(Piece p) {
+    private String presentationPieceAsIcon(Piece p) {
         if (p == null)
             return " ";
 
-        switch (p.getKind()) {
-            case "King":
-                return (p.getColor().equals("white")) ? "♔" : "♚";
-            case "Queen":
-                return (p.getColor().equals("white")) ? "♕" : "♛";
-            case "Bishop":
-                return (p.getColor().equals("white")) ? "♗" : "♝";
-            case "Knight":
-                return (p.getColor().equals("white")) ? "♘" : "♞";
-            case "Rook":
-                return (p.getColor().equals("white")) ? "♖" : "♜";
-            case "Pawn":
-                return (p.getColor().equals("white")) ? "♙" : "♟";
-        }
-        return " ";
+        return switch (p.getKind()) {
+            case "King" -> (p.getColor().equals("white")) ? "♔" : "♚";
+            case "Queen" -> (p.getColor().equals("white")) ? "♕" : "♛";
+            case "Bishop" -> (p.getColor().equals("white")) ? "♗" : "♝";
+            case "Knight" -> (p.getColor().equals("white")) ? "♘" : "♞";
+            case "Rook" -> (p.getColor().equals("white")) ? "♖" : "♜";
+            case "Pawn" -> (p.getColor().equals("white")) ? "♙" : "♟";
+            default -> " ";
+        };
     }
 }

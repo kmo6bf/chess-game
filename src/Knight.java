@@ -5,6 +5,13 @@ public class Knight extends Piece {
 
     @Override
     public boolean move(BoardScanner boardScanner, int column, int row) {
+//        if (column == currentColumn + 1 || column == currentColumn - 1) {
+//            if
+//        } else if ()
         return false;
     }
+
+//    private boolean moveForward(BoardScanner boardScanner, int column, int row) {
+//
+//    }
 }

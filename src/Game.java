@@ -21,7 +21,6 @@ public class Game {
             String playerInput = player.inputStrategyOfPlayer();
 
             if (rule.checkPlayerInputIsValid(playerInput.split(" ")[0]) && rule.checkPlayerInputIsValid(playerInput.split(" ")[1])) {
-                System.out.println("입력값 유효");
                 if (board.changePieceLocationOnBoard(playerInput)) {
                     break;
                 }

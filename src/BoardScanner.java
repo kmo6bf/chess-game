@@ -19,4 +19,8 @@ public class BoardScanner {
         return !Objects.isNull(enemy) && !enemy.getColor().equals(myColor);
     }
 
+    public boolean checkExistenceOfPiece(int column, int row) {
+        return !Objects.isNull(board[column][row]);
+    }
+
 }
