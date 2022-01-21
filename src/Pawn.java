@@ -12,7 +12,6 @@ public class Pawn extends Piece {
 
     @Override
     public boolean move(BoardScanner boardScanner, int column, int row) {
-        System.out.println("폰 이동까지는 들어옴");
         if (currentRow != row) {
             return attack(boardScanner, column, row);
         }
@@ -46,13 +45,15 @@ public class Pawn extends Piece {
 
     private boolean moveTwoSpaceForward(BoardScanner boardScanner, int column, int row) {
         if (Objects.equals(color, "white")) {
-            if (column == currentColumn + 2 && !boardScanner.checkExistenceOfPiece(currentColumn + 2, row))
+            if (column == currentColumn + 2 && !boardScanner.checkExistenceOfPiece(currentColumn + 2, row)) {
                 applyChangeLocation(column, row);
-            return true;
+                return true;
+            }
         } else if (Objects.equals(color, "black")) {
-            if (column == currentColumn - 2 && !boardScanner.checkExistenceOfPiece(currentColumn - 2, row))
+            if (column == currentColumn - 2 && !boardScanner.checkExistenceOfPiece(currentColumn - 2, row)) {
                 applyChangeLocation(column, row);
-            return true;
+                return true;
+            }
         }
 
         return false;
@@ -66,7 +67,6 @@ public class Pawn extends Piece {
                 return true;
             }
         }
-        System.out.println("폰 이동 오류 발생");
         return false;
     }
 
