@@ -4,7 +4,28 @@ public class Rook extends Piece {
     }
 
     @Override
-    public boolean move(BoardScanner boardScanner, int column, int row) {
+    public boolean move(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
+        if (destinationRow == currentRow) {
+            return moveForwardOrBack(boardScanner, destinationColumn, destinationRow);
+        } else if (destinationColumn == currentColumn) {
+            return moveRightOrLeft(boardScanner, destinationColumn, destinationRow);
+        }
+        return false;
+    }
+
+    private boolean moveForwardOrBack(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
+        if (!boardScanner.checkExistenceOfPieceOnForwardOrBackPath(currentRow, currentColumn, destinationColumn)) {
+            applyChangeLocation(destinationColumn, destinationRow);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean moveRightOrLeft(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
+        if (!boardScanner.checkExistenceOfPieceOnRightOrLeft(currentColumn, currentRow, destinationRow)) {
+            applyChangeLocation(destinationColumn, destinationRow);
+            return true;
+        }
 
         return false;
     }
