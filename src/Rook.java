@@ -14,7 +14,7 @@ public class Rook extends Piece {
     }
 
     private boolean moveForwardOrBack(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
-        if (!boardScanner.checkExistenceOfPieceOnForwardOrBackPath(currentRow, currentColumn, destinationColumn)) {
+        if (!boardScanner.checkExistenceOfPieceOnNorthOrSouthPath(currentRow, currentColumn, destinationColumn)) {
             applyChangeLocation(destinationColumn, destinationRow);
             return true;
         }
@@ -22,7 +22,7 @@ public class Rook extends Piece {
     }
 
     private boolean moveRightOrLeft(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
-        if (!boardScanner.checkExistenceOfPieceOnRightOrLeft(currentColumn, currentRow, destinationRow)) {
+        if (!boardScanner.checkExistenceOfPieceOnEastOrWestPath(currentColumn, currentRow, destinationRow)) {
             applyChangeLocation(destinationColumn, destinationRow);
             return true;
         }

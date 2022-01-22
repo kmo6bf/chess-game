@@ -19,7 +19,7 @@ public class BoardScanner {
         return !Objects.isNull(enemy) && !enemy.getColor().equals(myColor);
     }
 
-    public boolean checkExistenceOfPieceOnForwardOrBackPath(int row, int sourceColumn, int destinationColumn) {
+    public boolean checkExistenceOfPieceOnNorthOrSouthPath(int row, int sourceColumn, int destinationColumn) {
         int start = (sourceColumn < destinationColumn) ? sourceColumn + 1 : destinationColumn + 1;
         int end = Math.max(destinationColumn, sourceColumn);
 
@@ -30,12 +30,44 @@ public class BoardScanner {
         return false;
     }
 
-    public boolean checkExistenceOfPieceOnRightOrLeft(int column, int sourceRow, int destinationRow) {
+    public boolean checkExistenceOfPieceOnEastOrWestPath(int column, int sourceRow, int destinationRow) {
         int start = (sourceRow < destinationRow) ? sourceRow + 1 : destinationRow + 1;
         int end = Math.max(destinationRow, sourceRow);
 
         for (int i = start; i < end; i++) {
             if (checkExistenceOfPiece(column, i))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkExistenceOfPieceOnNortheastPath(int sourceColumn, int sourceRow, int destinationColumn) {
+        for (int i = (sourceColumn + 1), j = (sourceRow + 1); i < destinationColumn; i++, j++) {
+            if (checkExistenceOfPiece(i, j))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkExistenceOfPieceOnNorthwestPath(int sourceColumn, int sourceRow, int destinationColumn) {
+        for (int i = (sourceColumn + 1), j = (sourceRow - 1); i < destinationColumn; i++, j--) {
+            if (checkExistenceOfPiece(i, j))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkExistenceOfPieceOnSoutheastPath(int sourceColumn, int sourceRow, int destinationColumn) {
+        for (int i = (sourceColumn - 1), j = (sourceRow + 1); i > destinationColumn; i--, j++) {
+            if (checkExistenceOfPiece(i, j))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean checkExistenceOfPieceOnSouthwestPath(int sourceColumn, int sourceRow, int destinationColumn) {
+        for (int i = (sourceColumn - 1), j = (sourceRow - 1); i > destinationColumn; i--, j--) {
+            if (checkExistenceOfPiece(i, j))
                 return true;
         }
         return false;
