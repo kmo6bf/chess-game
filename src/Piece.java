@@ -9,7 +9,7 @@ public abstract class Piece {
         this.currentRow = currentRow;
     }
 
-    public abstract boolean move(BoardScanner boardScanner, int column, int row);
+    public abstract boolean move(BoardScanner boardScanner, int destinationColumn, int destinationRow);
 
     @Override
     public String toString() {

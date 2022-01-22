@@ -10,25 +10,28 @@ public class Board {
     }
 
     public boolean changePieceLocationOnBoard(String location) {
+        // 이동시킬 기물
         Piece piece;
         // 출발지 위치
         HashMap<String, Integer> sourceLocation = BoardSetting.convertLocationToIndex(location.split(" ")[0]);
         // 도착지 위치
         HashMap<String, Integer> destinationLocation = BoardSetting.convertLocationToIndex(location.split(" ")[1]);
 
-        piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
+        try {
+            piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
 
-        // 목적지에 아군 기물이 존재하는지 체크
-        if (boardScanner.checkExistenceOfAlliesOnDestination(piece.getColor(), destinationLocation.get("column"), destinationLocation.get("row")))
-            return false;
+            // 목적지에 아군 기물이 존재하는지 체크
+            if (boardScanner.checkExistenceOfAlliesOnDestination(piece.getColor(), destinationLocation.get("column"), destinationLocation.get("row")))
+                return false;
 
-        // 출발지에 기물이 존재하는지 체크
-        if (!boardScanner.checkExistenceOfPiece(sourceLocation.get("column"), sourceLocation.get("row")))
-            return false;
+            // 출발지에 기물이 존재하는지 체크
+            if (!boardScanner.checkExistenceOfPiece(sourceLocation.get("column"), sourceLocation.get("row")))
+                return false;
 
-
-        // 기물의 이동이 유효한지 체크
-        if (!piece.move(boardScanner, destinationLocation.get("column"), destinationLocation.get("row"))) {
+            // 기물의 이동이 유효한지 체크
+            if (!piece.move(boardScanner, destinationLocation.get("column"), destinationLocation.get("row")))
+                return false;
+        } catch (NullPointerException e) {
             return false;
         }
 
