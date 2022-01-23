@@ -14,6 +14,7 @@ public class Knight extends Piece {
         return false;
     }
 
+    // 전방으로 이동
     private boolean moveForwardOrBack(int destinationColumn, int destinationRow) {
         if (Math.abs(destinationRow - currentRow) == 1) {
             applyChangeLocation(destinationColumn, destinationRow);
@@ -23,6 +24,7 @@ public class Knight extends Piece {
         return false;
     }
 
+    // 후방으로 이동
     private boolean moveRightOrLeft(int destinationColumn, int destinationRow) {
         if (Math.abs(destinationColumn - currentColumn) == 1) {
             applyChangeLocation(destinationColumn, destinationRow);

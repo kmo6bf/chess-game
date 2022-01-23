@@ -9,17 +9,20 @@ public class Board {
         boardScanner = new BoardScanner(this.board);
     }
 
+    // 체스판 기물의 위치를 변경하는 메서드
     public boolean changePieceLocationOnBoard(String location, String playerColor) {
         // 이동시킬 기물
         Piece piece;
-        // 출발지 위치
+        // 출발지 인덱스
         HashMap<String, Integer> sourceLocation = BoardSetting.convertLocationToIndex(location.split(" ")[0]);
-        // 도착지 위치
+        // 도착지 인덱스
         HashMap<String, Integer> destinationLocation = BoardSetting.convertLocationToIndex(location.split(" ")[1]);
 
         try {
+            // 이동시킬 기물
             piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
 
+            // 본인 색상의 기물을 움직이는지 체크
             if (piece.getColor() != playerColor) {
                 System.out.println(playerColor + "색상의 기물만 움직일 수 있습니다!!");
                 return false;
@@ -40,12 +43,14 @@ public class Board {
             return false;
         }
 
+        // 기물의 움직임을 체스판에 반영
         board[destinationLocation.get("column")][destinationLocation.get("row")] = piece;
         board[sourceLocation.get("column")][sourceLocation.get("row")] = null;
 
         return true;
     }
 
+    // 체스판의 상황을 가시화해서 출력
     public void displayingBoard() {
         StringBuilder sb = new StringBuilder();
         sb.append("  ---------------------------------\n");

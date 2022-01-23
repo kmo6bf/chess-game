@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 public class Pawn extends Piece {
+    // 폰의 초기 행/영
     int initialColumn;
     int initialRow;
 
@@ -12,18 +13,21 @@ public class Pawn extends Piece {
 
     @Override
     public boolean move(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
+        // 폰의 목적지 열이 현재 열과 다르면 공격 의도로 간주
         if (currentRow != destinationRow) {
             return attack(boardScanner, destinationColumn, destinationRow);
         }
 
-        // 폰이 이동하는 경로에 기물이 존재하는지 체크
+        // 폰에서 발생하는 예외상황 체크
         if (!checkExceptionOfMovementOfPawn(boardScanner)) {
             return false;
         }
 
+        // 폰이 초기위치이면서 두 칸 이동시
         if (currentRow == initialRow && currentColumn == initialColumn && moveTwoSpaceForward(boardScanner, destinationColumn, destinationRow))
             return true;
 
+        // 폰이 한 칸 이동 할 경우
         return moveOneSpaceForward(destinationColumn, destinationRow);
     }
 
@@ -70,7 +74,9 @@ public class Pawn extends Piece {
         return false;
     }
 
+
     private boolean checkExceptionOfMovementOfPawn(BoardScanner boardScanner) {
+        // 색상별로 폰이 후진하지 못하도록 제한
         if (color.equals("white")) {
             if (boardScanner.checkExistenceOfPiece(currentColumn + 1, currentRow))
                 return false;

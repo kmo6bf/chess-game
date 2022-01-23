@@ -3,6 +3,7 @@ import java.util.HashMap;
 public class BoardSetting {
     private static Piece[][] board = new Piece[8][8];
 
+    // 체스판 기물 초기 위치 세팅
     public static Piece[][] initialBoard() {
         board[0][0] = new Rook("white", 0, 0);
         board[0][7] = new Rook("white", 0, 7);
@@ -38,6 +39,7 @@ public class BoardSetting {
         return board;
     }
 
+    // 사용자가 입력한 체스판 위치를 배열 인덱스로 변환
     public static HashMap<String, Integer> convertLocationToIndex(String location) {
         HashMap<String, Integer> index = new HashMap<>(2);
         int row = Integer.valueOf(location.charAt(0)) - 97;
@@ -46,9 +48,5 @@ public class BoardSetting {
         index.put("row", row);
 
         return index;
-    }
-
-    public static String convertIndexToLocation(int column, int row) {
-        return Character.toString(column + 97) + String.valueOf(row + 1);
     }
 }

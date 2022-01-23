@@ -19,6 +19,7 @@ public class Bishop extends Piece {
         return false;
     }
 
+    // 전방 대각선으로 이동
     private boolean moveToForwardDiagonal(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
         if (destinationRow > currentRow && !boardScanner.checkExistenceOfPieceOnNortheastPath(currentColumn, currentRow, destinationColumn)) {
             applyChangeLocation(destinationColumn, destinationRow);
@@ -30,6 +31,7 @@ public class Bishop extends Piece {
         return false;
     }
 
+    // 후방 대각선으로 이동
     private boolean moveToBackDiagonal(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
         if (destinationRow > currentRow && !boardScanner.checkExistenceOfPieceOnSoutheastPath(currentColumn, currentRow, destinationColumn)) {
             applyChangeLocation(destinationColumn, destinationRow);
@@ -41,6 +43,7 @@ public class Bishop extends Piece {
         return false;
     }
 
+    // 폰의 이동 예외사항 체크
     private boolean checkExceptionOfMovementOfBishop(int destinationColumn, int destinationRow) {
         if (destinationColumn == currentColumn || destinationRow == currentRow) {
             return false;

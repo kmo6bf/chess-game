@@ -1,4 +1,5 @@
 public class Rule {
+    // 플레이어의 입력 값 검증
     public boolean checkPlayerInputIsValid(String playerInput) {
         char rowValue = playerInput.charAt(0);
         String columnValue = playerInput.substring(1);

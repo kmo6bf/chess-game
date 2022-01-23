@@ -24,6 +24,7 @@ public abstract class Piece {
         return color;
     }
 
+    // 기물이 이동할 경우 현재 위치 갱신
     protected void applyChangeLocation(int column, int row) {
         this.currentColumn = column;
         this.currentRow = row;

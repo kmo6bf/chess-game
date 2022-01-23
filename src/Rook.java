@@ -13,6 +13,7 @@ public class Rook extends Piece {
         return false;
     }
 
+    // 상/하 일직선으로 이동
     private boolean moveForwardOrBack(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
         if (!boardScanner.checkExistenceOfPieceOnNorthOrSouthPath(currentRow, currentColumn, destinationColumn)) {
             applyChangeLocation(destinationColumn, destinationRow);
@@ -21,6 +22,7 @@ public class Rook extends Piece {
         return false;
     }
 
+    // 좌/우 일직선으로 이동
     private boolean moveRightOrLeft(BoardScanner boardScanner, int destinationColumn, int destinationRow) {
         if (!boardScanner.checkExistenceOfPieceOnEastOrWestPath(currentColumn, currentRow, destinationRow)) {
             applyChangeLocation(destinationColumn, destinationRow);
