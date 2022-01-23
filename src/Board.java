@@ -9,7 +9,7 @@ public class Board {
         boardScanner = new BoardScanner(this.board);
     }
 
-    public boolean changePieceLocationOnBoard(String location) {
+    public boolean changePieceLocationOnBoard(String location, String playerColor) {
         // 이동시킬 기물
         Piece piece;
         // 출발지 위치
@@ -19,6 +19,11 @@ public class Board {
 
         try {
             piece = board[sourceLocation.get("column")][sourceLocation.get("row")];
+
+            if (piece.getColor() != playerColor) {
+                System.out.println(playerColor + "색상의 기물만 움직일 수 있습니다!!");
+                return false;
+            }
 
             // 목적지에 아군 기물이 존재하는지 체크
             if (boardScanner.checkExistenceOfAlliesOnDestination(piece.getColor(), destinationLocation.get("column"), destinationLocation.get("row")))

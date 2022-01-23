@@ -21,7 +21,7 @@ public class Game {
             String playerInput = player.inputStrategyOfPlayer();
 
             if (rule.checkPlayerInputIsValid(playerInput.split(" ")[0]) && rule.checkPlayerInputIsValid(playerInput.split(" ")[1])) {
-                if (board.changePieceLocationOnBoard(playerInput)) {
+                if (board.changePieceLocationOnBoard(playerInput, player.getPlayerColor())) {
                     break;
                 }
             }
